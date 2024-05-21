@@ -1,5 +1,3 @@
-// main.js
-
 let config = {
     parent: 'phaser-game',
     type: Phaser.CANVAS,

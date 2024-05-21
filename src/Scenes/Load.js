@@ -7,7 +7,7 @@ class Load extends Phaser.Scene {
         this.load.setPath("./assets/");
 
         // Load the character sprite atlas
-        this.load.atlas("platformer_characters", "tilemap-characters_packed.png", "tilemap-characters-packed.json");
+        this.load.atlas("platformer_characters", "tilemap-characters-packed.png", "tilemap-characters-packed.json");
 
         // Load tile map
         this.load.image("tilemap_tiles", "tilemap_packed.png");
@@ -43,14 +43,14 @@ class Load extends Phaser.Scene {
         this.anims.create({
             key: 'idle',
             defaultTextureKey: "platformer_characters",
-            frames: [{ frame: "tile_0002.png" }],
+            frames: [{ frame: "tile_0000.png" }],
             repeat: -1
         });
 
         this.anims.create({
             key: 'jump',
             defaultTextureKey: "platformer_characters",
-            frames: [{ frame: "tile_0003.png" }],
+            frames: [{ frame: "tile_0001.png" }],
         });
 
         this.scene.start("platformerScene");

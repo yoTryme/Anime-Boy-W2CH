@@ -4,9 +4,9 @@ class Platformer extends Phaser.Scene {
     }
 
     init() {
-        this.ACCELERATION = 400;
+        this.ACCELERATION = 500;
         this.DRAG = 500;
-        this.JUMP_VELOCITY = -600;
+        this.JUMP_VELOCITY = -550;
         this.physics.world.gravity.y = 1500;
         this.PARTICLE_VELOCITY = 50;
         this.SCALE = 2.0; 
@@ -56,9 +56,9 @@ class Platformer extends Phaser.Scene {
 
         // 创建粒子效果
         this.walkEmitter = this.add.particles(0,0,"kenny-particles", {
-            frame: ['smoke_01.png', 'smoke_04.png'],
+            frame: ['flame_01.png', 'flame_04.png'],
             scale: { start: 0.03, end: 0.1 },
-            maxAliveParticles: 11,
+            maxAliveParticles: 111,
             lifespan: 350,
             alpha: { start: 1, end: 0.1 },
             on: false
@@ -66,10 +66,10 @@ class Platformer extends Phaser.Scene {
         this.walkEmitter.stop();        
 
         this.jumpEmitter = this.add.particles(0,0,"kenny-particles", {
-            frame: ['spark_02.png', 'spark_01.png'],
-            scale: { start: 0.1, end: 0 },
-            maxAliveParticles: 11,
-            lifespan: 500,
+            frame: ['trace_05.png', 'trace_06.png'],
+            scale: { start: 0.03, end: 0.1 },
+            maxAliveParticles: 200,
+            lifespan: 300,
             alpha: { start: 1, end: 0.1 },
             on: false
         });
@@ -126,8 +126,11 @@ class Platformer extends Phaser.Scene {
             this.player.body.setVelocityY(this.JUMP_VELOCITY);
             
             this.jumpEmitter.setPosition(this.player.x, this.player.y);
-            this.walkEmitter.start();
-            
+            this.jumpEmitter.start();
+        } 
+        else {
+
+            this.jumpEmitter.stop();    
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.tKey)) {
