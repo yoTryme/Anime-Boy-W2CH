@@ -19,7 +19,10 @@ class Load extends Phaser.Scene {
         
         // Load background image
         this.load.image("background_tiles", "tilemap-backgrounds_packed.png");
-
+        this.load.spritesheet("background_sheet", "tilemap-backgrounds_packed.png", {
+            frameWidth: 18,
+            frameHeight: 18
+        });
         // Load particle effects
         this.load.multiatlas("kenny-particles", "kenny-particles.json");
 
