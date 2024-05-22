@@ -13,21 +13,21 @@ class Platformer extends Phaser.Scene {
     }
 
     create() {
-        // 创建Tilemap
+        //Create Tilemap
         this.map = this.add.tilemap("ANIMEBOYW2CH",18, 18, 60, 20);
 
         this.tileset = this.map.addTilesetImage("kenny_tilemap_packed", "tilemap_tiles");
 
-        // 创建背景图层
+        //Create background layer
         this.backgroundLayer = this.map.createLayer("background", this.tileset, 0, 0);
 
-        // 创建地面和平台图层
+        //Create ground and platform layers
         this.groundLayer = this.map.createLayer("Ground-n-Platforms", this.tileset, 0, 0);
         this.groundLayer.setCollisionByProperty({ 
             collides: true 
         });
 
-        // 创建对象层
+        // Create object layer
         this.coins = this.map.createFromObjects("coin and flag", {
              name: "coin", key: "tilemap_sheet", frame: 151 
             });
@@ -39,11 +39,11 @@ class Platformer extends Phaser.Scene {
         })[0];
         this.physics.world.enable(this.flag, Phaser.Physics.Arcade.STATIC_BODY);
 
-        // 创建玩家
+        //Create player
         this.player = this.physics.add.sprite(30, 285, "platformer_characters", "tile_0022.png");
         this.player.setCollideWorldBounds(true);
 
-        // 添加碰撞检测
+        //Add collision detection
         this.physics.add.collider(this.player, this.groundLayer);
         this.physics.add.overlap(this.player, this.coinGroup, this.collectCoin, null, this);
         this.physics.add.overlap(this.player, this.flag, this.completeLevel, null, this);
@@ -54,7 +54,7 @@ class Platformer extends Phaser.Scene {
             this.physics.world.debugGraphic.clear()
         }, this);
 
-        // 创建粒子效果
+        //Create particle effects
         this.walkEmitter = this.add.particles(0,0,"kenny-particles", {
             frame: ['flame_01.png', 'flame_04.png'],
             scale: { start: 0.03, end: 0.1 },
@@ -75,16 +75,16 @@ class Platformer extends Phaser.Scene {
         });
         this.jumpEmitter.stop();        
 
-        // 预加载音效
+        //Set camera
         this.confirmationSound = this.sound.add("confirmation");
         this.jumpSound = this.sound.add("jumpsound"); 
-        // 设置摄像机
+
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(this.player, true, 0.25, 0.25);
         this.cameras.main.setDeadzone(300, 300);
         this.cameras.main.setZoom(this.SCALE);
 
-        // 键盘输入
+        // keyboard input
         this.cursors = this.input.keyboard.createCursorKeys();
         this.tKey = this.input.keyboard.addKey('T');
     }
@@ -144,10 +144,9 @@ class Platformer extends Phaser.Scene {
     }
 
     completeLevel(player, flag) {
-        // 播放音效
+        // play confirmationSound
         this.confirmationSound.play();
 
-        // 切换到游戏结束场景
         this.scene.start('GameOverScene');
     }
 }
