@@ -77,7 +77,7 @@ class Platformer extends Phaser.Scene {
 
         // 预加载音效
         this.confirmationSound = this.sound.add("confirmation");
-
+        this.jumpSound = this.sound.add("jumpsound"); 
         // 设置摄像机
         this.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.cameras.main.startFollow(this.player, true, 0.25, 0.25);
@@ -127,6 +127,7 @@ class Platformer extends Phaser.Scene {
             
             this.jumpEmitter.setPosition(this.player.x, this.player.y);
             this.jumpEmitter.start();
+            this.jumpSound.play();
         } 
         else {
 

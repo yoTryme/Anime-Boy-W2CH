@@ -16,6 +16,7 @@ class Load extends Phaser.Scene {
             frameWidth: 18,
             frameHeight: 18
         });
+        
         // Load background image
         this.load.image("background_tiles", "tilemap-backgrounds_packed.png");
 
@@ -24,6 +25,8 @@ class Load extends Phaser.Scene {
 
         // Load sound effects
         this.load.audio("confirmation", "confirmation_002.ogg");
+        this.load.audio("jumpsound", "jumpsound.ogg");
+
     }
 
     create() {
